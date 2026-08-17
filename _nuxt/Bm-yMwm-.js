@@ -1,0 +1,1 @@
+const t="sl_comprador";function s(){function e(r){sessionStorage.setItem(t,JSON.stringify(r))}function n(){const r=sessionStorage.getItem(t);if(!r)return null;try{return JSON.parse(r)}catch{return null}}function o(){sessionStorage.removeItem(t)}return{guardar:e,ler:n,limpar:o}}export{s as u};

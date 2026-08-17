@@ -1,0 +1,1 @@
+function c(i){const e=i.replace(/\D/g,"");if(e.length!==11||/^(\d)\1{10}$/.test(e))return!1;const t=o=>{let n=0;for(let r=0;r<o;r++)n+=Number(e[r])*(o+1-r);const s=n*10%11;return s===10?0:s};return t(9)===Number(e[9])&&t(10)===Number(e[10])}export{c};
