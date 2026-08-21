@@ -14,28 +14,35 @@
  * tamanho de fonte.
  *
  * A marca é a da SorteLabel: grafite, petróleo e o ouro reservado a prêmio e
- * prova. Slides claros e escuros se alternam para o olho descansar.
+ * prova. O bloco de verde cheio e o papel claro se alternam, que é o ritmo
+ * do próprio site.
  */
 :root{
-  --grafite:#090B11; --superficie:#0F131B; --petroleo:#0D9488; --petroleo-claro:#2DD4BF;
-  --ouro:#EDB64B; --papel:#F4F5F8; --nevoa:#93A1B0; --nevoa-fraca:#66707E;
-  --tinta:#0F131B; --tinta-fraca:#5A6572; --fio:rgba(147,161,176,.18); --fio-claro:#DFE4EA;
+  /* Os mesmos tokens do site: o bloco cheio é o petróleo profundo, o claro é o
+     papel esverdeado. Branco sobre o profundo dá 8,08:1 e o petróleo claro dá
+     5,99:1, que é o que sustenta o texto corrido em cima do verde. */
+  --verde:#095A53; --verde-fundo:#063F3A; --superficie:#06403B;
+  --petroleo:#0D9488; --petroleo-claro:#9FD9D2; --ouro:#EDB64B;
+  --papel:#E6F1ED; --branco:#FFFFFF;
+  --nevoa:#BFE4DF; --nevoa-fraca:#84C6BF;
+  --tinta:#0E1729; --tinta-fraca:#47536A;
+  --fio:rgba(255,255,255,.16); --fio-claro:#D2E4DE;
 }
 *{box-sizing:border-box}
-body{margin:0;background:#05070B;color:var(--papel);font-family:Lato,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--verde-fundo);color:var(--branco);font-family:Lato,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
 .deck{display:grid;gap:22px;max-width:1440px;margin:0 auto;padding:22px}
 
 .slide{position:relative;width:100%;aspect-ratio:16/9;container-type:inline-size;overflow:hidden;
   border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:5.2cqw 6.2cqw}
-.slide.escuro{background:var(--grafite);color:var(--papel);border:1px solid rgba(147,161,176,.14)}
+.slide.verde{background:var(--verde);color:var(--branco);border:1px solid rgba(255,255,255,.10)}
 .slide.luz{background:var(--papel);color:var(--tinta)}
 
 /* Trama fina, como pano de fundo — a mesma ideia do grid da referência. */
 .slide::before{content:"";position:absolute;inset:-60px;opacity:.5;pointer-events:none;
-  background-image:linear-gradient(to right,rgba(13,148,136,.10) 1px,transparent 1px),
-                   linear-gradient(to bottom,rgba(13,148,136,.10) 1px,transparent 1px);
+  background-image:linear-gradient(to right,rgba(255,255,255,.09) 1px,transparent 1px),
+                   linear-gradient(to bottom,rgba(255,255,255,.09) 1px,transparent 1px);
   background-size:58px 58px;
   -webkit-mask-image:radial-gradient(70% 60% at 50% 45%,#000,transparent);
   mask-image:radial-gradient(70% 60% at 50% 45%,#000,transparent)}
@@ -50,7 +57,7 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.022em;line-height:1.06}
 h1{font-size:5.2cqw}
 h2{font-size:4.1cqw;line-height:1.08}
 h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
-.ciano{color:var(--petroleo-claro)}
+.ciano{color:var(--ouro)}
 .luz .ciano{color:#0B6E63}
 .dourado{color:var(--ouro)}
 
@@ -68,8 +75,8 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 .monograma{width:3.4cqw;height:3.4cqw;display:block}
 .marca-nome{font-size:1.9cqw;font-weight:900;letter-spacing:-.03em}
 .chips{display:flex;flex-wrap:wrap;gap:.8cqw;margin-top:3cqw}
-.chip{padding:.7cqw 1.3cqw;border:1px solid rgba(13,148,136,.34);border-radius:99px;
-  font-size:1.15cqw;font-weight:700;background:rgba(13,148,136,.10)}
+.chip{padding:.7cqw 1.3cqw;border:1px solid rgba(255,255,255,.3);border-radius:99px;
+  font-size:1.15cqw;font-weight:700;background:rgba(255,255,255,.10)}
 
 /* ---------- blocos ---------- */
 .grade{display:grid;gap:1.4cqw;margin-top:3cqw;flex:1 1 auto;min-height:0}
@@ -77,22 +84,23 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 .grade.dois{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cartao{border-radius:1cqw;padding:2.4cqw;border:1px solid var(--fio);background:var(--superficie);
   display:flex;flex-direction:column;justify-content:center}
-.luz .cartao{background:#fff;border-color:var(--fio-claro);box-shadow:0 1px 2px rgba(9,11,17,.05)}
+.luz .cartao{background:var(--branco);border-color:var(--fio-claro);box-shadow:0 1px 2px rgba(9,23,41,.05)}
 .cartao p{margin:1cqw 0 0;font-size:1.35cqw;line-height:1.5;color:var(--nevoa)}
 .luz .cartao p{color:var(--tinta-fraca)}
-.cartao.marcado{border-color:rgba(13,148,136,.4);background:linear-gradient(180deg,rgba(13,148,136,.12),var(--superficie) 60%)}
+.cartao.marcado{border-color:rgba(159,217,210,.42);background:linear-gradient(180deg,rgba(159,217,210,.16),var(--superficie) 62%)}
 .luz .cartao.marcado{background:linear-gradient(180deg,rgba(13,148,136,.10),#fff 62%);border-color:rgba(13,148,136,.35)}
 .selo{display:block;font-size:1.1cqw;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--petroleo-claro);margin-bottom:1cqw}
+  color:#C9EDE8;margin-bottom:1cqw}
 .luz .selo{color:#0B6E63}
 
 .marcadores{margin:1.2cqw 0 0;padding:0;list-style:none}
 .marcadores li{position:relative;padding:.85cqw 0 .85cqw 1.8cqw;font-size:1.35cqw;line-height:1.45;
   color:var(--nevoa);border-top:1px solid var(--fio)}
 .luz .marcadores li{color:var(--tinta-fraca);border-color:var(--fio-claro)}
+.luz .marcadores li::before{background:var(--petroleo)}
 .marcadores li:first-child{border-top:0}
 .marcadores li::before{content:"";position:absolute;left:.2cqw;top:1.5cqw;width:.55cqw;height:.55cqw;
-  border-radius:99px;background:var(--petroleo)}
+  border-radius:99px;background:var(--petroleo-claro)}
 
 /* ---------- números do investimento ---------- */
 .precos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4cqw;margin-top:2.6cqw;flex:1 1 auto;min-height:0}
@@ -106,28 +114,29 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 
 /* ---------- telefone ---------- */
 .produto{display:grid;grid-template-columns:.85fr 1.15fr;gap:4cqw;align-items:center;height:100%}
-.telefone{border:.7cqw solid #1B2230;border-radius:2.6cqw;background:#000;overflow:hidden;box-shadow:0 2cqw 4cqw rgba(0,0,0,.55);max-width:26.5cqw;width:100%;justify-self:center}
-.tela{background:var(--papel);color:var(--tinta);position:relative}
+.telefone{border:.7cqw solid #04302C;border-radius:2.6cqw;background:#04302C;overflow:hidden;box-shadow:0 2cqw 4cqw rgba(3,32,29,.5);max-width:26.5cqw;width:100%;justify-self:center}
+.tela{background:var(--branco);color:var(--tinta);position:relative}
 .tela-foto{display:block;width:100%;height:13cqw;object-fit:cover}
 .tela-titulo{position:absolute;top:9.6cqw;left:1.1cqw;right:1.1cqw;margin:0;color:#fff;font-size:1.25cqw;
   font-weight:900;line-height:1.15;text-shadow:0 .2cqw 1cqw rgba(0,0,0,.9)}
 .tela-corpo{padding:1.2cqw 1.1cqw 1.5cqw}
 .tela-pacotes{display:grid;grid-template-columns:repeat(3,1fr);gap:.5cqw}
 .pacote{display:flex;flex-direction:column;gap:.15cqw;padding:.8cqw .4cqw;border-radius:.8cqw;
-  border:1px solid #CDD8E2;background:#EEF2F7;text-align:center}
+  border:1px solid #C7E1DC;background:#EFF7F5;text-align:center}
 .pacote b{font-size:1.15cqw;font-weight:900;line-height:1}
 .pacote i{font-style:normal;font-size:.95cqw;font-weight:900;color:#0B6E63}
-.pacote.ativo{border-color:var(--petroleo);background:rgba(13,148,136,.12)}
+.pacote.ativo{border-color:var(--petroleo);background:#DCF0ED}
 .tela-botao{display:block;margin-top:.9cqw;padding:1cqw;border-radius:1cqw;background:var(--petroleo);
   color:#fff;text-align:center;font-size:1.15cqw;font-weight:900}
 
 .lista{margin:0;padding:0;list-style:none}
 .lista li{padding:1.4cqw 0;border-top:1px solid var(--fio);font-size:1.35cqw;line-height:1.5;color:var(--nevoa)}
 .lista li:first-child{border-top:0;padding-top:0}
-.lista b{display:block;margin-bottom:.3cqw;font-size:1.6cqw;color:var(--papel);letter-spacing:-.01em}
+.lista b{display:block;margin-bottom:.3cqw;font-size:1.6cqw;color:var(--branco);letter-spacing:-.01em}
 
-.botao{display:inline-block;margin-top:2.4cqw;padding:1.2cqw 2.2cqw;border-radius:1cqw;background:var(--petroleo);
-  color:#fff;font-weight:900;font-size:1.4cqw;text-decoration:none}
+.botao{display:inline-block;margin-top:2.4cqw;padding:1.2cqw 2.2cqw;border-radius:1cqw;background:var(--branco);
+  color:var(--verde);font-weight:900;font-size:1.4cqw;text-decoration:none}
+.luz .botao{background:var(--petroleo);color:var(--branco)}
 .assinatura{margin:1.2cqw 0 0;font-size:1.1cqw;color:var(--nevoa-fraca)}
 
 /* ---------- linha do tempo ---------- */
@@ -146,7 +155,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   display:flex;flex-direction:column;justify-content:center}
 .coluna.antes{opacity:.9}
 .coluna.antes .marcadores li::before{background:var(--nevoa-fraca)}
-.coluna.depois{border-color:rgba(13,148,136,.4);background:linear-gradient(180deg,rgba(13,148,136,.12),var(--superficie) 60%)}
+.coluna.depois{border-color:rgba(159,217,210,.42);background:linear-gradient(180deg,rgba(159,217,210,.16),var(--superficie) 62%)}
 
 .fecho{align-items:center;text-align:center}
 .fecho .marca{justify-content:center}
@@ -181,7 +190,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 <div class="deck">
 
   <!-- 01 capa -->
-  <section class="slide escuro">
+  <section class="slide verde">
     <span class="numero">01</span>
     <div class="capa">
       <div>
@@ -237,7 +246,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   </section>
 
   <!-- 03 os dois caminhos -->
-  <section class="slide escuro">
+  <section class="slide verde">
     <span class="numero">03</span>
     <div class="eyebrow">Por que agora</div>
     <h2>Existem dois caminhos legais abertos.<br />A maioria do mercado <span class="ciano">não usa nenhum</span>.</h2>
@@ -291,7 +300,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   </section>
 
   <!-- 05 o produto -->
-  <section class="slide escuro">
+  <section class="slide verde">
     <span class="numero">05</span>
     <div class="produto">
       <div class="telefone">
@@ -353,7 +362,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   </section>
 
   <!-- 07 whitelabel -->
-  <section class="slide escuro">
+  <section class="slide verde">
     <span class="numero">07</span>
     <div class="eyebrow">Whitelabel</div>
     <h2>Do lado de fora é a sua empresa.<br />Do lado de dentro é a nossa engenharia.</h2>
@@ -417,7 +426,7 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   </section>
 
   <!-- 09 fecho -->
-  <section class="slide escuro fecho">
+  <section class="slide verde fecho">
     <span class="numero">09</span>
     <div class="marca"><svg class="monograma" viewBox="0 0 64 64" role="img" aria-label="SorteLabel"><mask id="ms2" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M38.36 21.03A7.5 7.5 0 1 0 32 32.5A7.5 7.5 0 1 1 25.64 43.97" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"/></mask><rect x="5" y="5" width="54" height="54" rx="16" fill="#F4F5F8"/><rect x="5" y="5" width="54" height="54" rx="16" fill="#0D9488" mask="url(#ms2)"/></svg><span class="marca-nome">SorteLabel</span></div>
     <h2>O próximo passo é ver funcionando.</h2>
