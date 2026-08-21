@@ -153,6 +153,22 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 .etapas b{display:block;font-size:1.45cqw;letter-spacing:-.01em}
 .etapas p{margin:.5cqw 0 0;font-size:1.2cqw;color:var(--tinta-fraca);line-height:1.45}
 
+/* ---------- painel do backoffice ---------- */
+/* Duas colunas: o argumento à esquerda, o painel à direita. A moldura tem a
+   proporção de uma tela de computador, então quando a captura entrar no lugar
+   da grade de métricas nada precisa ser remexido. */
+.gestao{display:grid;grid-template-columns:.86fr 1.14fr;gap:3.4cqw;align-items:center;flex:1 1 auto;min-height:0}
+.painel{border-radius:1.2cqw;border:1px solid var(--fio-claro);background:var(--branco);
+  box-shadow:0 1.4cqw 3cqw rgba(9,23,41,.10);overflow:hidden}
+.painel-topo{display:flex;align-items:center;gap:.7cqw;padding:1cqw 1.4cqw;border-bottom:1px solid var(--fio-claro);
+  background:#F7FAF9}
+.painel-topo i{width:.7cqw;height:.7cqw;border-radius:99px;background:#D2E4DE;display:block}
+.painel-topo span{margin-left:.6cqw;font-size:1cqw;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-fraca)}
+.metricas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--fio-claro)}
+.metrica{background:var(--branco);padding:1.5cqw 1.3cqw}
+.metrica b{display:block;font-size:1.2cqw;letter-spacing:-.01em;line-height:1.2}
+.metrica span{display:block;margin-top:.4cqw;font-size:1cqw;line-height:1.35;color:var(--tinta-fraca)}
+
 /* ---------- comparação ---------- */
 .comparacao{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4cqw;margin-top:2.6cqw;
   flex:1 1 auto;min-height:0}
@@ -171,7 +187,10 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   .deck{gap:14px;padding:14px}
   .slide{aspect-ratio:auto;min-height:88svh;padding:34px 22px}
   .capa,.produto{grid-template-columns:1fr;gap:26px}
-  .grade.tres,.grade.dois,.precos,.etapas,.comparacao,.solucao{grid-template-columns:1fr;flex:0 1 auto}
+  .grade.tres,.grade.dois,.precos,.etapas,.comparacao,.solucao,.gestao{grid-template-columns:1fr;flex:0 1 auto}
+  .metricas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metrica b{font-size:14px}.metrica span{font-size:12px}.painel-topo span{font-size:11px}
+  .painel-topo i{width:7px;height:7px}
   .solucao h3{font-size:16px}.solucao .marcadores li{font-size:14px;padding:7px 0 7px 16px}
   .solucao .marcadores li::before{top:15px;width:5px;height:5px}
   h1{font-size:34px}h2{font-size:26px}h3{font-size:18px}
@@ -331,31 +350,39 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
     </div>
   </section>
 
-  <!-- 06 motor de venda -->
+  <!-- 06 o backoffice -->
   <section class="slide luz">
     <span class="numero">06</span>
-    <div class="eyebrow">O motor de venda</div>
-    <h2>A plataforma não só vende.<br />Ela <span class="ciano">sobe o ticket</span> sozinha.</h2>
+    <div class="gestao">
+      <div>
+        <div class="eyebrow">O backoffice</div>
+        <h2>Cada centavo vendido,<br /><span class="ciano">como e onde</span>.</h2>
+        <p class="lede">Gestão completa da operação em tempo real. Resultado claro, de leitura fácil, e toda venda trackada da origem até o Pix aprovado.</p>
+        <ul class="marcadores" style="margin-top:2.2cqw">
+          <li>Você vê a venda acontecendo, não o relatório de ontem</li>
+          <li>Número que o dono lê sozinho, sem analista no meio</li>
+          <li>Origem de cada pedido, para investir onde volta</li>
+        </ul>
+      </div>
 
-    <div class="grade tres">
-      <article class="cartao">
-        <span class="selo">Passo 1</span>
-        <h3>Pacote maior, cota mais barata</h3>
-        <p>Desconto progressivo por quantidade, com o "de R$ 100 por R$ 70" e a economia à vista.</p>
-      </article>
-      <article class="cartao">
-        <span class="selo">Passo 2</span>
-        <h3>Escada no carrinho</h3>
-        <p>A barra mostra o próximo degrau: "faltam R$ 23 para 60% de desconto no sorteio da semana".</p>
-      </article>
-      <article class="cartao">
-        <span class="selo">Passo 3</span>
-        <h3>Giro premiado</h3>
-        <p>A compra dá giros que revelam cotas premiadas já cadastradas. Premiação instantânea, dentro do mesmo regulamento.</p>
-      </article>
+      <div class="painel">
+        <div class="painel-topo"><i></i><i></i><i></i><span>Painel de vendas</span></div>
+        <div class="metricas">
+          <div class="metrica"><b>Valor vendido</b><span>Por dia, por campanha, no minuto</span></div>
+          <div class="metrica"><b>Ticket médio</b><span>Quanto cada comprador deixa</span></div>
+          <div class="metrica"><b>Números vendidos</b><span>Quanto falta para esgotar</span></div>
+          <div class="metrica"><b>Ritmo por dia</b><span>E o ritmo que o sorteio exige</span></div>
+          <div class="metrica"><b>Recebido via Pix</b><span>O que entrou de verdade</span></div>
+          <div class="metrica"><b>Compradores únicos</b><span>Quem é novo e quem voltou</span></div>
+          <div class="metrica"><b>Novos cadastros</b><span>O topo do funil do período</span></div>
+          <div class="metrica"><b>Conversão</b><span>Do cadastro até o pedido pago</span></div>
+          <div class="metrica"><b>Abandono de checkout</b><span>Onde o dinheiro está parando</span></div>
+          <div class="metrica"><b>Ranking de campanhas</b><span>Qual puxa o faturamento</span></div>
+          <div class="metrica"><b>Origem da venda</b><span>Link, afiliado, campanha</span></div>
+          <div class="metrica"><b>Histórico exportável</b><span>Para fechar o mês fora dali</span></div>
+        </div>
+      </div>
     </div>
-
-    <p class="nota">Três benefícios crescem juntos: mais cotas, mais giros, cupom maior. E o cupom traz a pessoa de volta para a campanha seguinte, e a segunda venda nasce da primeira.</p>
   </section>
 
   <!-- 07 whitelabel -->
