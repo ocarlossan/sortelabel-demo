@@ -99,6 +99,21 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 .marcadores li::before{content:"";position:absolute;left:.2cqw;top:1.5cqw;width:.55cqw;height:.55cqw;
   border-radius:99px;background:var(--petroleo-claro)}
 
+/* ---------- quatro frentes da solução ---------- */
+/* São quatro listas numa tela só, então aqui o tipo desce um degrau e o
+   marcador encolhe junto. Menos que isto e o slide deixa de ler em projetor. */
+.solucao{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.6cqw;margin-top:3cqw}
+/* Aqui a coluna é dividida por um fio, não por um cartão: as quatro frentes
+   têm quantidade de itens diferente, e cartão de altura igual só sobraria
+   fundo vazio embaixo das listas curtas. */
+.solucao .cartao{background:none;border:0;border-left:1px solid var(--fio);border-radius:0;
+  padding:.2cqw 0 .2cqw 1.6cqw;justify-content:flex-start}
+.luz .solucao .cartao{border-color:var(--fio-claro);box-shadow:none}
+.solucao h3{font-size:1.7cqw;line-height:1.15}
+.solucao .marcadores{margin-top:1.2cqw}
+.solucao .marcadores li{padding:.86cqw 0 .86cqw 1.5cqw;font-size:1.26cqw;line-height:1.4;border-top:0}
+.solucao .marcadores li::before{top:1.52cqw;width:.48cqw;height:.48cqw}
+
 /* ---------- números do investimento ---------- */
 .precos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4cqw;margin-top:2.6cqw;flex:1 1 auto;min-height:0}
 .preco{border-radius:1cqw;padding:2.4cqw;border:1px solid var(--fio-claro);background:#fff;
@@ -156,7 +171,9 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   .deck{gap:14px;padding:14px}
   .slide{aspect-ratio:auto;min-height:88svh;padding:34px 22px}
   .capa,.produto{grid-template-columns:1fr;gap:26px}
-  .grade.tres,.grade.dois,.precos,.etapas,.comparacao{grid-template-columns:1fr;flex:0 1 auto}
+  .grade.tres,.grade.dois,.precos,.etapas,.comparacao,.solucao{grid-template-columns:1fr;flex:0 1 auto}
+  .solucao h3{font-size:16px}.solucao .marcadores li{font-size:14px;padding:7px 0 7px 16px}
+  .solucao .marcadores li::before{top:15px;width:5px;height:5px}
   h1{font-size:34px}h2{font-size:26px}h3{font-size:18px}
   .eyebrow,.numero{font-size:11px}
   .lede{font-size:16px}.nota{font-size:13px}
@@ -216,36 +233,58 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
     </div>
   </section>
 
-  <!-- 03 os dois caminhos -->
+  <!-- 03 nossa solução -->
   <section class="slide verde">
     <span class="numero">03</span>
-    <div class="eyebrow">Por que agora</div>
-    <h2>Existem dois caminhos legais abertos.<br />A maioria do mercado <span class="ciano">não usa nenhum</span>.</h2>
+    <div class="eyebrow">Nossa solução</div>
+    <h2>Quatro frentes, <span class="ciano">um backoffice só</span>.</h2>
 
-    <div class="grade dois">
-      <article class="cartao marcado">
-        <span class="selo">Caminho 1</span>
-        <h3>Título de capitalização</h3>
-        <p>Modalidade filantropia premiável, regulada pela SUSEP. O comprador adquire um título e o sorteio acontece dentro de um produto financeiro autorizado.</p>
+    <div class="solucao">
+      <article class="cartao">
+        <h3>Campanhas e sorteios</h3>
         <ul class="marcadores">
-          <li>Vale para o país inteiro</li>
-          <li>Apuração pela Loteria Federal</li>
-          <li>Título nominal no nome do comprador</li>
+          <li>Quantidade de números por campanha</li>
+          <li>Cotas premiadas</li>
+          <li>Raspadinha e giros</li>
+          <li>Cupom de desconto</li>
+          <li>Upsell no carrinho</li>
         </ul>
       </article>
-      <article class="cartao marcado">
-        <span class="selo">Caminho 2</span>
-        <h3>Loteria estadual</h3>
-        <p>Desde a decisão do STF de 2020, os estados podem explorar e autorizar loterias. Cada campanha sai com número de processo.</p>
+
+      <article class="cartao">
+        <h3>Engajamento</h3>
         <ul class="marcadores">
-          <li>Autorização campanha a campanha</li>
-          <li>Aprovação mais rápida</li>
-          <li>Regras e alcance definidos pelo estado</li>
+          <li>Minigames de giro e raspadinha</li>
+          <li>Outros formatos personalizáveis</li>
+          <li>Antes e depois da compra</li>
+          <li>Prêmio na hora, dentro do mesmo regulamento</li>
+        </ul>
+      </article>
+
+      <article class="cartao">
+        <h3>Indicação e afiliados</h3>
+        <ul class="marcadores">
+          <li>Indique e ganhe para todo usuário</li>
+          <li>Ganho entra como crédito para trocar por números</li>
+          <li>Afiliado com comissão individual</li>
+          <li>Encurtador de link</li>
+          <li>Painel do afiliado com a rede em tempo real</li>
+        </ul>
+      </article>
+
+      <article class="cartao">
+        <h3>Gestão</h3>
+        <ul class="marcadores">
+          <li>Dashboard e relatórios completos</li>
+          <li>Cadastro, FTD e volume de compra</li>
+          <li>Abandono de carrinho em tempo real</li>
+          <li>Histórico exportável</li>
+          <li>CRM nativo para o fluxo de clientes</li>
         </ul>
       </article>
     </div>
 
-    <p class="nota">Os dois exigem estrutura jurídica, parceiro autorizado e prestação de contas. É essa barreira que separa quem monta uma rifa de quem constrói um negócio, e é ela que a SorteLabel já atravessou.</p>
+    <p class="nota">Nada disso depende de programador. Você liga, desliga e ajusta cada peça no backoffice, campanha a campanha.</p>
   </section>
 
   <!-- 04 o que você recebe -->
