@@ -217,41 +217,45 @@ h3{font-size:1.65cqw;letter-spacing:-.015em;line-height:1.2;font-weight:700}
 .fecho h2{font-size:4.4cqw}
 .fecho .botao{margin-top:var(--e4);padding:1.3cqw 2.8cqw;font-size:1.45cqw}
 
-/* Em tela estreita o cartão 16:9 ficaria alto demais para ler: ali ele solta a
-   proporção e vira uma tela comum, com o texto num corpo confortável. */
+/* No celular o slide NÃO se desmonta: continua o mesmo cartão 16:9, só que
+   estreito. Como toda a tipografia é medida em `cqw`, ou seja, em porcentagem
+   da largura do próprio slide, a tela encolhe inteira e a composição fica
+   idêntica à do projetor. Em troca, o deck ocupa a borda toda e avisa que
+   deitar o aparelho resolve o tamanho da letra. */
 @media (max-width:760px){
-  .deck{gap:12px;padding:12px}
-  .slide{aspect-ratio:auto;min-height:auto;padding:30px 20px;border-radius:12px}
+  .deck{gap:8px;padding:8px;scroll-snap-type:y proximity}
+  .slide{border-radius:8px;scroll-snap-align:center}
   .slide::after{display:none}
-  .capa,.produto,.gestao{grid-template-columns:1fr;gap:24px}
-  .grade.tres,.precos,.etapas,.comparacao,.solucao,.passos{grid-template-columns:1fr;flex:0 1 auto}
-  h1{font-size:32px}h2{font-size:25px}h3{font-size:17px}
-  .fecho h2{font-size:27px}
-  .eyebrow,.numero{font-size:11px}
-  .lede{font-size:16px}.nota{font-size:13px}
-  .cartao p,.marcadores li,.lista li{font-size:14px}
-  .lista b{font-size:16px}
-  .marca-nome{font-size:19px}.monograma{width:30px;height:30px}
-  .preco .cifra{font-size:28px}.preco .medida,.preco .ou{font-size:11px}.preco .detalhe{font-size:13px}
-  .solucao h3{font-size:16px}.solucao .marcadores li{font-size:14px;padding:7px 0 7px 16px}
-  .solucao .marcadores li::before{top:15px;width:5px;height:5px}
-  .solucao .cartao{padding-left:14px}
-  .etapas b{font-size:16px}.etapas p{font-size:13px}
-  .etapas li{padding:20px 0 0}.etapas li::before{width:22px;height:22px;font-size:11px;top:-11px}
-  .passos{gap:18px;margin-top:24px}
-  .passo{padding:0 0 0 42px;min-height:32px}
-  .passo .icone{width:28px;height:28px}
-  .passo::after{display:none}
-  .passo b{font-size:17px}.passo p{font-size:14px;margin-top:6px}
-  .telefone{height:auto;width:220px;margin-inline:auto;border-width:7px;border-radius:24px}
-  .tela-app{height:auto;width:100%}
-  .botao,.fecho .botao{font-size:15px;padding:12px 22px;border-radius:10px;margin-top:22px}
-  .numero{right:14px;top:12px}
-  .marcadores li{padding-left:15px}
-  .marcadores li::before{top:14px;width:5px;height:5px}
+  .numero{right:2.6cqw;top:2.4cqw}
 }
+
+/* Celular deitado: aí quem limita é a ALTURA da tela. O slide passa a ser
+   medido pela altura e centralizado, então cada tela cabe inteira de uma vez,
+   sem rolagem no meio do slide. */
+@media (max-width:1000px) and (orientation:landscape){
+  .deck{gap:8px;padding:8px;scroll-snap-type:y mandatory}
+  .slide{width:auto;height:calc(100svh - 16px);margin-inline:auto;border-radius:8px;
+    scroll-snap-align:center}
+  .slide::after{display:none}
+}
+
+.girar{display:none}
+@media (max-width:760px) and (orientation:portrait){
+  .girar{display:flex;align-items:center;justify-content:center;gap:8px;
+    margin:2px 8px 0;padding:10px 14px;border-radius:99px;
+    background:rgba(159,217,210,.12);border:1px solid rgba(159,217,210,.28);
+    color:var(--petroleo-claro);font-size:12px;font-weight:700;letter-spacing:.02em}
+  .girar svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;
+    stroke-linecap:round;stroke-linejoin:round}
+}
+
 </style>
 <title>SorteLabel · Apresentação</title>
+
+<p class="girar">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="17" height="10" rx="2"/><path d="M8.6 3.9 10.4 5.7 8.6 7.5"/><path d="M10.4 5.7H7.2A3.2 3.2 0 0 0 4 8.9"/></svg>
+  Deite o celular para ver os slides maiores
+</p>
 
 <div class="deck">
 
