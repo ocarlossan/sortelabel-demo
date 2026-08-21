@@ -186,7 +186,25 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
 .coluna.depois{border-color:rgba(159,217,210,.42);background:linear-gradient(180deg,rgba(159,217,210,.16),var(--superficie) 62%)}
 
 .fecho{align-items:center;text-align:center}
-.fecho .marca{justify-content:center}
+.fecho .marca{justify-content:center;margin-bottom:2.4cqw}
+.fecho .lede{margin-inline:auto;max-width:52ch}
+
+/* Duas saídas, e elas não valem o mesmo: ver funcionando é o passo barato,
+   falar com a gente é o passo que fecha. Por isso uma é sólida e a outra vazada. */
+.acoes{display:flex;gap:1.2cqw;justify-content:center;margin-top:3cqw}
+.acoes .botao{margin-top:0}
+.botao.vazado{background:transparent;color:var(--branco);box-shadow:inset 0 0 0 1px rgba(255,255,255,.42)}
+.luz .botao.vazado{color:var(--verde);box-shadow:inset 0 0 0 1px rgba(9,90,83,.35)}
+
+/* A oferta reaparece no fecho: quem chegou aqui decide com o número na frente. */
+.oferta{display:flex;justify-content:center;gap:3.4cqw;margin-top:3.6cqw;padding-top:2.6cqw;
+  border-top:1px solid var(--fio)}
+.oferta span{display:block;font-size:1.1cqw;line-height:1.4;color:var(--nevoa-fraca)}
+.oferta b{display:block;font-size:2.1cqw;font-weight:900;letter-spacing:-.02em;color:var(--branco);margin-bottom:.3cqw}
+.oferta .ouro{color:var(--ouro)}
+
+.contato{display:flex;justify-content:center;gap:2.4cqw;margin-top:2.4cqw;
+  font-size:1.15cqw;font-weight:700;color:var(--petroleo-claro)}
 
 /* Em tela estreita o cartão 16:9 vira alto demais para ler; ali ele solta a
    proporção e vira uma tela comum, com o texto num corpo confortável. */
@@ -195,6 +213,10 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   .slide{aspect-ratio:auto;min-height:88svh;padding:34px 22px}
   .capa,.produto{grid-template-columns:1fr;gap:26px}
   .grade.tres,.grade.dois,.precos,.etapas,.comparacao,.solucao,.gestao,.passos{grid-template-columns:1fr;flex:0 1 auto}
+  .acoes,.oferta,.contato{flex-direction:column;gap:12px;align-items:center}
+  .oferta{margin-top:26px;padding-top:20px}
+  .oferta b{font-size:24px}.oferta span{font-size:13px}
+  .contato{font-size:14px;margin-top:20px;gap:8px}
   .passos{gap:20px;margin-top:26px}
   .passo{padding:0 0 0 44px;min-height:34px}
   .passo::before{width:32px;height:32px;font-size:14px}
@@ -479,10 +501,25 @@ h3{font-size:1.8cqw;letter-spacing:-.01em;line-height:1.2}
   <section class="slide verde fecho">
     <span class="numero">10</span>
     <div class="marca"><svg class="monograma" viewBox="0 0 64 64" role="img" aria-label="SorteLabel"><mask id="ms2" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M38.36 21.03A7.5 7.5 0 1 0 32 32.5A7.5 7.5 0 1 1 25.64 43.97" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"/></mask><rect x="5" y="5" width="54" height="54" rx="16" fill="#F4F5F8"/><rect x="5" y="5" width="54" height="54" rx="16" fill="#0D9488" mask="url(#ms2)"/></svg><span class="marca-nome">SorteLabel</span></div>
-    <h2>O próximo passo é ver funcionando.</h2>
-    <p class="lede" style="margin-inline:auto">Abra a demonstração no seu celular, compre um número de mentira e acompanhe o caminho inteiro. Depois a gente senta e desenha a sua primeira campanha.</p>
-    <a class="botao" href="https://ocarlossan.github.io/sortelabel-demo/" target="_blank" rel="noopener">Abrir a demonstração</a>
-    <p class="assinatura">contato · site · telefone a preencher</p>
+    <h2>Vamos montar a sua <span class="ciano">primeira campanha</span>.</h2>
+    <p class="lede">Abra a demonstração no seu celular, compre um número de mentira e percorra o caminho inteiro. Depois a gente senta com você e desenha a campanha, do prêmio ao preço da cota.</p>
+
+    <div class="acoes">
+      <a class="botao" href="https://ocarlossan.github.io/sortelabel-demo/" target="_blank" rel="noopener">Abrir a demonstração</a>
+      <a class="botao vazado" href="#contato">Falar com a gente</a>
+    </div>
+
+    <div class="oferta">
+      <span><b>R$ 30.000</b>setup, uma vez</span>
+      <span><b class="ouro">R$ 5.900</b>ou 5% das vendas, o que for maior</span>
+      <span><b>4 etapas</b>da assinatura ao primeiro sorteio</span>
+    </div>
+
+    <div class="contato" id="contato">
+      <span>WhatsApp ···</span>
+      <span>contato@··· </span>
+      <span>sortelabel.com.br</span>
+    </div>
   </section>
 
 </div>
