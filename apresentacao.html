@@ -42,19 +42,21 @@ body{margin:0;background:var(--verde-fundo);color:var(--branco);
 .slide{position:relative;width:100%;aspect-ratio:16/9;container-type:inline-size;overflow:hidden;
   border-radius:14px;display:flex;flex-direction:column;justify-content:center;padding:4.4cqw 5.4cqw}
 .slide.verde{background:var(--verde);color:var(--branco);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-.slide.luz{background:var(--papel);color:var(--tinta)}
+.slide.luz{background:var(--papel);color:var(--tinta);box-shadow:inset 0 0 0 1px rgba(9,23,41,.07)}
 
 /* Fundo em duas camadas: a trama fina anda devagar e um brilho respira atrás
    dela. É movimento de ambiente, não de atenção, por isso tão lento. */
-.slide::before{content:"";position:absolute;inset:-80px;z-index:0;opacity:.5;pointer-events:none;
-  background-image:linear-gradient(to right,rgba(255,255,255,.085) 1px,transparent 1px),
-                   linear-gradient(to bottom,rgba(255,255,255,.085) 1px,transparent 1px);
-  background-size:56px 56px;
+.slide::before{content:"";position:absolute;inset:-8cqw;z-index:0;opacity:.5;pointer-events:none;
+  background-image:linear-gradient(to right,rgba(255,255,255,.075) .08cqw,transparent .08cqw),
+                   linear-gradient(to bottom,rgba(255,255,255,.075) .08cqw,transparent .08cqw);
+  background-size:4cqw 4cqw;
   -webkit-mask-image:radial-gradient(72% 62% at 50% 45%,#000,transparent);
   mask-image:radial-gradient(72% 62% at 50% 45%,#000,transparent);
   animation:deriva 42s linear infinite}
-.slide.luz::before{background-image:linear-gradient(to right,rgba(13,148,136,.13) 1px,transparent 1px),
-                   linear-gradient(to bottom,rgba(13,148,136,.13) 1px,transparent 1px)}
+/* No papel claro a trama precisa de menos força: o contraste ali é maior. */
+.slide.luz::before{opacity:.34;
+  background-image:linear-gradient(to right,rgba(13,148,136,.16) .08cqw,transparent .08cqw),
+                   linear-gradient(to bottom,rgba(13,148,136,.16) .08cqw,transparent .08cqw)}
 .slide::after{content:"";position:absolute;z-index:0;width:62%;aspect-ratio:1;border-radius:50%;
   right:-14%;top:-26%;pointer-events:none;
   background:radial-gradient(circle,rgba(159,217,210,.17),transparent 62%);
@@ -63,7 +65,7 @@ body{margin:0;background:var(--verde-fundo);color:var(--branco);
 .slide:nth-child(even)::after{right:auto;left:-16%;top:auto;bottom:-30%;animation-delay:-9s}
 .slide > *{position:relative;z-index:1}
 
-@keyframes deriva{to{background-position:56px 56px}}
+@keyframes deriva{to{background-position:4cqw 4cqw}}
 @keyframes respira{from{transform:translate3d(0,0,0) scale(1);opacity:.7}
                      to{transform:translate3d(-3%,4%,0) scale(1.14);opacity:1}}
 @media (prefers-reduced-motion:reduce){
@@ -99,12 +101,12 @@ h3{font-size:1.65cqw;letter-spacing:-.015em;line-height:1.2;font-weight:700}
 /* ---------- cartões ---------- */
 /* O cartão no verde afunda (mais escuro que o fundo) e leva um fio de luz na
    borda de cima, que é o que dá relevo sem clarear o bloco inteiro. */
-.grade{display:grid;gap:1.2cqw;margin-top:var(--e4);flex:1 1 auto;min-height:0}
+.grade{display:grid;gap:1.2cqw;margin-top:var(--e4);align-items:stretch}
 .grade.tres{grid-template-columns:repeat(3,minmax(0,1fr))}
 .cartao{border-radius:.9cqw;padding:2.2cqw;border:1px solid var(--fio);background:var(--superficie);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);display:flex;flex-direction:column;justify-content:center}
-.luz .cartao{background:var(--branco);border-color:var(--fio-claro);
-  box-shadow:0 1px 2px rgba(9,23,41,.05),0 12px 28px -22px rgba(9,23,41,.5)}
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);display:flex;flex-direction:column;justify-content:flex-start}
+.luz .cartao{background:var(--branco);border-color:#BFD8D1;
+  box-shadow:0 1px 1px rgba(9,23,41,.04),0 10px 22px -16px rgba(9,23,41,.45)}
 .cartao p{margin:var(--e1) 0 0;font-size:1.24cqw;line-height:1.52;color:var(--nevoa)}
 .luz .cartao p{color:var(--tinta-fraca)}
 .cartao.marcado{border-color:rgba(159,217,210,.38);
@@ -247,6 +249,31 @@ h3{font-size:1.65cqw;letter-spacing:-.015em;line-height:1.2;font-weight:700}
     color:var(--petroleo-claro);font-size:12px;font-weight:700;letter-spacing:.02em}
   .girar svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;
     stroke-linecap:round;stroke-linejoin:round}
+}
+
+
+/* Impressão e exportação em PDF: cada slide vira uma página 16:9 inteira, sem
+   respiro entre elas e sem canto arredondado. Serve tanto para o Cmd+P do
+   navegador quanto para gerar o arquivo de apresentação. */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff;margin:0;padding:0;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .girar{display:none}
+  .deck{display:block;max-width:none;margin:0;padding:0;gap:0}
+  .slide{width:1280px;height:720px;aspect-ratio:auto;margin:0;border-radius:0;
+    box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .slide::before,.slide::after{animation:none}
+  .slide::before{opacity:.4}
+  .slide.luz::before{opacity:.3}
+  .slide::after{opacity:.8}
+  /* Sombra com desfoque grande o motor de impressão resolve como bloco chapado:
+     no PDF ela vira contorno fino, que é o que a página aguenta. */
+  .telefone{box-shadow:none;outline:1px solid rgba(3,32,29,.5)}
+  .painel{box-shadow:none}
+  .cartao,.preco,.coluna{box-shadow:none}
+  .luz .cartao,.preco{border-color:#C7DCD6}
 }
 
 </style>
